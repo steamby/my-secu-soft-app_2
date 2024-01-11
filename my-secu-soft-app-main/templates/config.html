@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Configuration</title>
+    <link rel="stylesheet" type="text/css" href="/templates/styles.css">
+    <script type="text/javascript">
+        function generateToken() {
+            var token = [...Array(30)].map(() => Math.random().toString(36)[2]).join('');
+            document.getElementById('token').value = token;
+            document.getElementById('token_display').textContent = token;
+        }
+    </script>
+</head>
+<body>
+    <h1>Modifier mes informations</h1>
+    <a href="/profil/{{ username }}" class="return_profil-button">Retourner à mon profil</a>
+    <form action="/config" method="post" class="form-container" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="username" class="form-label">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" value="{{ users[0] }}" required class="form-input">
+        </div>
+    
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" value="{{ users[2] }}" required class="form-input">
+        </div>
+    
+        <div class="form-group">
+            <label for="age" class="form-label">Age:</label>
+            <input type="number" id="age" name="age" value="{{ users[3] }}" required class="form-input">
+        </div>
+    
+        <div class="form-group">
+            <label for="bio" class="form-label">Bio:</label>
+            <textarea id="bio" name="bio" class="form-input">{{ users[4] }}</textarea>
+        </div>
+        
+        <button type="button" onclick="generateToken()">Générer un Token</button>
+        <div class="form-group">
+            <label for="token" class="form-label">Token:</label>
+            <textarea id="token" name="token" class="form-input">{{ users[7] }}</textarea>
+        </div>
+    
+        <div class="form-group">
+            <label for="avatar" class="form-label">Avatar (URL):</label>
+            <input type="text" id="avatar" name="avatar" value="{{ users[5] }}" class="form-input">
+            <label for="new_avatar" class="form-label">Nouvel Avatar:</label>
+            <input type="file" id="new_avatar" name="new_avatar" accept="image/*">
+            <div class="avatar-preview">
+                <img id="avatar-preview" src="{{ users[5] }}" alt="Aperçu de l'avatar">
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <input type="submit" value="Mettre à jour" class="submit-button">
+        </div>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier les informations des utilisateurs</title>
+    <link rel="stylesheet" type="text/css" href="/templates/styles.css">
+</head>
+<body>
+    <h1>Modifier les informations des utilisateurs</h1>
+    <a href="/profil/{{ username }}" class="return_profil-button">Retourner à mon profil</a>
+    
+    <!-- Formulaire pour la mise à jour des utilisateurs -->
+    <form action="/admin_config" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom d'Utilisateur</th>
+                    <th>Mot de passe</th>
+                    <th>Email</th>
+                    <th>Âge</th>
+                    <th>Bio</th>
+                    <th>Avatar</th>
+                    <th>Token</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user_list %}
+                    <tr>
+                        <td>
+                            <input type="text" name="username_{{ user.username }}" value="{{ user.username }}">
+                        </td>
+                        <td>
+                            <input type="text" name="password_{{ user.username }}" value="{{ user.password }}">
+                        </td>
+                        <td>
+                            <input type="email" name="email_{{ user.username }}" value="{{ user.email }}">
+                        </td>
+                        <td>
+                            <input type="number" name="age_{{ user.username }}" value="{{ user.age }}">
+                        </td>
+                        <td>
+                            <textarea name="bio_{{ user.username }}">{{ user.bio }}</textarea>
+                        </td>
+                        <td>
+                            <input type="text" name="avatar_{{ user.username }}" value="{{ user.avatar }}">
+                        </td>
+                        <td>
+                            <input type="text" name="token_{{ user.username }}" value="{{ user.token }}">
+                        </td>
+                        <td>
+                            <input type="checkbox" name="delete_{{ user.username }}" value="1"> Supprimer
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Mettre à jour" class="submit-button">
+    </form>
+
+    <!-- Formulaire pour la gestion des posts reportés -->
+    <h2>Posts Reportés</h2>
+    <form action="/hide_post" method="post">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Utilisateur</th>
+                <th>Date/Heure</th>
+                <th>Message</th>
+                <th>Nombre de Reports</th>
+                <th>Actions</th>
+            </tr>
+            {% for post in reported_posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.username }}</td>
+                <td>{{ post.horodatage }}</td>
+                <td>{{ post.message }}</td>
+                <td>{{ post.report_count }}</td>
+                <td>
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <input type="submit" name="hide_button_{{ post.id }}" value="Cacher">
+                    <input type="submit" name="delete_button_{{ post.id }}" value="Supprimer">
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>       
+</body>
+</html>

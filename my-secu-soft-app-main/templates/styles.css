@@ -1,0 +1,265 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.message-box {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+}
+
+.message-box img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.timestamp {
+    float: right;
+    font-size: 12px;
+    color: #888;
+}
+
+.username {
+    font-size: 40px;
+}
+
+.bio-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-width: 400px;
+}
+
+.profile-button, .logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.profile-button {
+    background-color: #007BFF;
+    position: absolute;
+    top: 10px;
+    right: 150px;  /* Ajusté pour être à gauche du bouton .logout-button */
+}
+
+.logout-button {
+    background-color: #FF5733;
+    position: absolute;
+    top: 10px;
+    right: 10px;  /* Modifié pour être tout à droite */
+}
+
+
+
+.profile-button:hover {
+    background-color: #0056b3;
+}
+
+.logout-button:hover {
+    background-color: #e43f00;
+}
+
+.form {
+    width: 20em;
+    margin: 0;
+    text-align: left;
+}
+
+.form .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form .form-group label {
+    flex: 0 0 100px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.form .form-group input[type="text"],
+.form .form-group input[type="password"],
+.form .form-group input[type="email"],
+.form .form-group textarea {
+    flex: 0 0 20em;
+}
+
+.form .form-group input[type="number"] {
+    flex: 0;
+}
+
+.login-button {
+    background-color: #008000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.config-button {
+    background-color: #008000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 150px; /* Ajustez cette valeur en fonction de votre besoin */
+    right: 10px; /* Ajustez cette valeur en fonction de votre besoin */
+}
+
+.return_profil-button {
+    background-color: #008000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 100px; /* Ajustez cette valeur en fonction de votre besoin */
+    right: 10px; /* Ajustez cette valeur en fonction de votre besoin */
+}
+
+.chat-button {
+    background-color: #008000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 100px; /* Ajustez cette valeur en fonction de votre besoin */
+    right: 10px; /* Ajustez cette valeur en fonction de votre besoin */
+}
+
+/* Supposons que .news-feed soit la classe du fil d'actualité */
+.news-feed {
+    max-width: 800px; /* ou toute autre largeur que vous préférez */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-container {
+    max-width: 800px; /* ou toute autre largeur que vous préférez */
+    margin: 0 auto; /* centre horizontalement */
+    padding: 20px; /* espace autour du contenu pour éviter qu'il touche les bords */
+    text-align: center; /* centre le contenu textuel */
+}
+
+.message-box {
+    display: inline-block; /* pour que les boîtes de message ne prennent que l'espace nécessaire */
+    text-align: left; /* pour que le texte à l'intérieur de la boîte de message soit aligné à gauche */
+}
+
+
+/* /////////////////////////////////////////////////////////////// */
+
+/* CONFIG.HTML CLASS */
+
+/* Styles pour le formulaire */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-input[type="file"] {
+    width: 100%;
+}
+
+/* Style pour l'aperçu de l'avatar */
+.avatar-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 10px;
+}
+
+/* Style pour le bouton "Mettre à jour" */
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Au survol du bouton */
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+#admin-button {
+    position: absolute;
+    top: 10px; /* Ajustez la valeur en fonction de votre mise en page */
+    left: 10px; /* Ajustez la valeur en fonction de votre mise en page */
+}
+/* /////////////////////////////////////////////////////////////// */
+
+/* INBOX.HTML CLASS */
+
+/* styles.css */
+.message-inbox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.received-message {
+    background-color: #e0f2f1; /* Couleur de fond pour les messages reçus */
+}
+
+.sent-message {
+    background-color: #d3f4d3; /* Couleur de fond pour les messages envoyés */
+}

@@ -1,0 +1,53 @@
+<!-- <strong>ADMIN PANEL</strong><br>
+Hello, Admin {{ user_name }}!<br>
+Email: {{ user_email }} <br>
+Age: {{ user_age }} <br>
+Bio: {{ user_bio }} <br>
+Ajoutez ici d'autres options d'admin -->
+<!-- <form action="/logout" method="post">
+    <input type="submit" value="Logout">
+</form> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" type="text/css" href="templates/styles.css">
+    <style>
+        /* Vos styles CSS ici */
+    </style>
+</head>
+<body>
+    <strong>ADMIN PANEL</strong><br>
+    <h1>Hello, Admin {{ user_name }}!</h1>
+    <p>Email: {{ user_email }}</p>
+    <p>Age: {{ user_age }}</p>
+    <p>Bio: {{ user_bio }}</p>
+    <!-- Ajoutez ici d'autres options d'admin -->
+
+    <h2>User Posts</h2>
+    <ul>
+        <!-- Boucle pour afficher les posts de l'utilisateur -->
+        {% for post in user_posts %}
+        <li>
+            <div class="message-box">
+                <span class="timestamp">at {{ post[0] }}</span>
+                <p class="message">{{ post[1] }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Ajoutez un formulaire pour publier un article -->
+    <form action="/profile" method="post">
+        <label for="new-post">Publier un article :</label>
+        <textarea id="new-post" name="message" rows="4" cols="50"></textarea>
+        <input type="submit" value="Publier">
+    </form>
+
+    <form action="/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="stylesheet" type="text/css" href="templates/styles.css">
+    <script type="text/javascript">
+        function reportMessage(userposts_id) {
+            fetch('/report_message', {
+                method: 'POST',
+                body: JSON.stringify({message_id: userposts_id}),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); // or response.json() if server responds with JSON
+                } else {
+                    throw new Error('Server responded with status: ' + response.status);
+                }
+            })
+            .then(text => {
+                alert('Message avec ID ' + userposts_id + ' signalé.');
+                console.log('Réponse du serveur:', text); // Log the server's response text
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Une erreur est survenue lors du signalement du message avec ID ' + userposts_id);
+            });
+
+        }
+    </script>
+</head>
+<body>
+    <div class="content-container">
+    <h1>Fil d'actualité</h1>
+    {% if user_role == "admin" %}
+        <!-- <a href="templates/all_config.html" class="admin-button">Opération admin</a> -->
+        <a href="/all_config">Opération admin</a>
+
+    {% endif %}
+
+    <!-- Liens pour le profil et la déconnexion -->
+    <div style="text-align: center;">
+        <a href="/profil/{{ utilisateur_connecte }}" class="profile-button">My Profile</a>
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+
+    <!-- Boucle pour afficher tous les userposts existants -->
+    {% for userposts in userposts %}
+    <div class="message-box">
+        <!-- Afficher l'avatar de l'utilisateur -->
+        <img src="/files/{{ userposts.avatar }}" alt="Avatar de {{ userposts.username }}" width="50" style="border-radius: 50%; margin-right: 10px; vertical-align: middle;">
+        <p><strong><a href="/profil/{{ userposts.username }}" style="color: #007BFF;">{{ userposts.username }}</a></strong> - {{ userposts.timestamp }}</p>
+        <p>{{ userposts.message }}</p>
+        {% if userposts.image_filename %}
+            <img src="/files/{{ userposts.image_filename }}" alt="Image associée au message">
+            <div style="margin-top: 10px;">
+                <a href="/files/{{ userposts.image_filename }}" download style="color: #007BFF; text-decoration: underline;">Télécharger l'image</a>
+            </div>
+        {% endif %}
+        <button onclick="reportMessage({{ userposts.id }})">Report</button>    </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

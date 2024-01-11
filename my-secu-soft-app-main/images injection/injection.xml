@@ -1,0 +1,5 @@
+<!DOCTYPE test [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>
+<credentials>
+  <user>&xxe;</user>
+  <pass>dummy</pass>
+</credentials>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="/templates/styles.css">
+    <style>
+        /* Vos styles CSS ici */
+    </style>
+</head>
+<body>
+    <h1>My Page</h1>
+    <!-- Permet à l'utilisateur de retourner sur la homepage -->
+    <a href="/" class="return-button">Return to Homepage</a>
+    <a href="/config" class="config-button">Configurer le Profil</a>
+    <a href="/inbox" class="chat-button">Accéder à la messagerie</a>
+    <!-- Afficher les informations de l'utilisateur -->
+    <p><strong class="username">{{ users[0] }}</strong></p>
+    <img src="/files/{{ users[6] }}" alt="Avatar de l'utilisateur" width="100">
+    <p>{{ users[3] }} ans</p>
+    <p>{{ users[2] }}</p>
+    <div class="bio-box">
+        <p><strong>Bio :</strong> {{ users[4] }}</p>
+    </div>
+    <!-- <div id="timer">Temps restant avant expiration de la session : <span id="time-left">{{ time_left }}</span> secondes</div> -->
+    
+    <!-- Ajoutez un formulaire pour publier un article -->
+    <form action="/profile" method="post" enctype="multipart/form-data">
+        <label for="new-post">Publier un article :</label>
+        <textarea id="new-post" name="message" rows="4" cols="50"></textarea>
+        <label for="image">Ajouter une image:</label>
+        <input type="file" name="image" accept="image/*">
+        <input type="text" name="image_url" placeholder="Coller l'URL de l'image ici">
+        <input type="submit" value="Publier">
+    </form>
+
+    <ul>
+        {% for post in userposts %}
+        <li>
+            <div class="message-box">
+                <span class="timestamp">at {{ post[2] }}</span>
+                <p class="message">{{ post[3] }}</p>
+                
+                {% if post[4] and post[4] != post[1] %}
+                    <img src="/files/{{ post[4] }}" alt="Image associée au message" width="300">
+                    {% if post[4] != "None" %}
+                        <a href="/files/{{ post[4] }}" download>Télécharger l'image</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    
+
+    <script>
+    // L'erreur est causée car il ne reconnaît pas le format Jinja2...
+    let remainingTime = {{ time_left }} * 1000;  // Convertissez les secondes en millisecondes
+
+    const countdown = setInterval(() => {
+        remainingTime -= 1000;  // décompte chaque seconde
+        const seconds = Math.floor(remainingTime / 1000);
+        document.getElementById('time-left').textContent = seconds;
+
+        if (remainingTime <= 0) {
+            clearInterval(countdown);
+            alert('Votre session a expiré !');
+            window.location.href = '/login';  // redirection vers la page de connexion
+        }
+    }, 1000);
+    </script>
+</body>
+</html>
+
+
+

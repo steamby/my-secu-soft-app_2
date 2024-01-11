@@ -1,0 +1,16 @@
+choose a language : Python
+choose a web server technology : Nginx / Plus besoin car integrer a python
+choose a database : SqLite
+find documentation :
+creat the git :https://gitedu.hesge.ch/mohamed.dahmoune/my-secu-soft-app
+creat a basic register : 
+
+
+
+Pour pouvoir push sur une autre branche :
+
+git checkout arthur-branche
+git add .
+git commit -m 'text'
+
+git push -u origin arthur-branche

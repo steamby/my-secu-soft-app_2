@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <link rel="stylesheet" type="text/css" href="/templates/styles.css">
+</head>
+<body>
+    <h1>Profile Page</h1>
+    
+    <!-- Permet à l'utilisateur de retourner sur la homepage -->
+    <a href="/" class="return-button">Return to Homepage</a>
+
+    
+    <!-- Afficher les informations de l'utilisateur -->
+    <p><strong class="username">{{ users[0] }}</strong></p>
+    <!-- Ajout de l'avatar ici -->
+    <img src="/files/{{ users[6] }}" alt="Avatar de l'utilisateur" width="100"> <!-- Vous pouvez ajuster la largeur comme vous le souhaitez -->
+    <p>{{ users[3] }} ans</p>
+    <p>{{ users[2] }}</p>
+    <div class="bio-box">
+        <p><strong>Bio :</strong> {{ users[4] }}</p>
+    </div>
+
+    
+
+    <!-- Afficher les userposts de l'utilisateur -->
+    <h2>Ma page</h2>
+    {% for post in userposts %}
+        <li>
+            <div class="message-box">
+                <span class="timestamp">at {{ post[2] }}</span>
+                <p class="message">{{ post[3] }}</p>
+                
+                {% if post[4] and post[4] != post[1] %}
+                    <img src="/files/{{ post[4] }}" alt="Image associée au message" width="300">
+                    {% if post[4] != "None" %}
+                        <a href="/files/{{ post[4] }}" download>Télécharger l'image</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+</body>
+</html>
